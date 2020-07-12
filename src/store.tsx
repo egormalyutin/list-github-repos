@@ -155,10 +155,18 @@ export default class AppStore {
     }.bind(this)
   );
 
+  newUser = debounce(
+    action(() => {
+      this.page = 1;
+      this.loadRepos();
+    }),
+    500
+  );
+
   constructor() {
     this.loadRepos();
 
-    reaction(() => [this.user, this.query], debounce(this.loadRepos, 500));
+    reaction(() => [this.user, this.query], this.newUser);
     reaction(() => [this.page], this.loadRepos);
   }
 
