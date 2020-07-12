@@ -19,17 +19,21 @@ const TOKEN = "d8166cb2cd56848803ac4430a588d005b7bc52ee";
 const PAGE = 10;
 
 async function getRepoContent(repo: Repo, path: string): Promise<FSObject[]> {
-  const res = await axios.get(
-    `https://api.github.com/repos/${repo.owner}/${repo.name}/contents/${path}`,
-    {
-      params: {},
-      headers: {
-        Authorization: "token " + TOKEN,
-      },
-    }
-  );
+  try {
+    const res = await axios.get(
+      `https://api.github.com/repos/${repo.owner}/${repo.name}/contents/${path}`,
+      {
+        params: {},
+        headers: {
+          Authorization: "token " + TOKEN,
+        },
+      }
+    );
 
-  return res.data.map((fs: any) => new FSObject(fs, repo));
+    return res.data.map((fs: any) => new FSObject(fs, repo));
+  } catch (e) {
+    return [];
+  }
 }
 
 export class FSObject {
