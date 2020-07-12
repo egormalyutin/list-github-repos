@@ -1,3 +1,5 @@
+Задание было выполнено за 3.5 часа. Все 3 доп. задачи тоже выполнил (пагинация, поиск, показ файлов).
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
